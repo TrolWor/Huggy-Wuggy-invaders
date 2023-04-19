@@ -1,2 +1,2 @@
-# Huggy-Wuggy-invaders
+# Huggy Wuggy Invaders
 Game
