@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PowerUPLine : MonoBehaviour
 {
+    [SerializeField]
+    private float _powerUPSpeed = 5f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +17,6 @@ public class PowerUPLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate((Vector3.down * _powerUPSpeed) * Time.deltaTime);
     }
 }

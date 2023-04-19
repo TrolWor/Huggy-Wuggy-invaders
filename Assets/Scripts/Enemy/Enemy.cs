@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     private float _EnemySpeed = 5f;
 
     [SerializeField]
-    private float _EnemyHealth = 5f;
+    private float _enemyHealth = 5f;
 
     [SerializeField]
     private int _scoreEnemy = 1;
@@ -40,13 +40,18 @@ public class Enemy : MonoBehaviour
         if (col.CompareTag("Player"))
         {
 
-            //Destroy(gameObject);
+            Destroy(gameObject);
             _uIManager.UpdateScore(_scoreEnemy);
         }
         if (col.CompareTag("PlayerBullet"))
         {
-            //Destroy(gameObject);
-            _uIManager.UpdateScore(_scoreEnemy);
+            _enemyHealth = _enemyHealth- col.GetComponent<Bullet>().Damage ;
+
+            if (_enemyHealth <= 0)
+            {
+                _uIManager.UpdateScore(_scoreEnemy);
+                Destroy(gameObject);
+            }
         }
     }
     }

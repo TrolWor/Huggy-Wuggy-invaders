@@ -8,6 +8,9 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private int _damage;
     public float TimeToDisable;
+
+    public int Damage { get => _damage; set => _damage = value; }
+
     // Start is called before the first frame update
     void Start()
     {
