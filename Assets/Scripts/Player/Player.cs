@@ -12,7 +12,7 @@ using UnityEngine;
         public List<GameObject> Pool;
         private bool GameOn = true;
         [SerializeField]
-        private float speed = 5.0f;
+        private float _speed = 5.0f;
         [SerializeField]
         private float _fireRate = 0.25f;
         private float _canFire = 0.0f;
@@ -23,14 +23,29 @@ using UnityEngine;
         private AudioSource _audioSource;
         private UIManager _uIManager;
 
-        public float GetMaxLife()
+    public void IncreaseSpeed(float value)
+    {
+        _speed += value;
+    }
+    public float GetFireRate()
+    {
+        return _fireRate;
+    }
+
+    public void IncreaseFireRate(float value)
+    {
+        _fireRate += value;
+    }
+
+    public float GetMaxLife()
         {
             return _maxLife;
         }
 
-        public void SetMaxLife(float value)
+        public void IncreaseMaxLife(float value)
         {
-            _maxLife = value;
+            _maxLife += value;
+        _uIManager.UpdateLifes(_life, _maxLife);
         }
 
         public float GetLife()
@@ -38,9 +53,10 @@ using UnityEngine;
             return _life;
         }
 
-        public void SetLife(float value)
+        public void IncreaseLife(float value)
         {
-            _life = value;
+            _life += value;
+        _uIManager.UpdateLifes(_life,_maxLife);
         }
 
         // Start is called before the first frame update
@@ -64,17 +80,18 @@ using UnityEngine;
         {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
-                transform.Translate((Vector3.left * speed) * Time.deltaTime);
+                transform.Translate((Vector3.left * _speed) * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow))
             {
-                transform.Translate((Vector3.right * speed) * Time.deltaTime);
+                transform.Translate((Vector3.right * _speed) * Time.deltaTime);
             }
         }
     public void Damage(float value)
     {
-        SetLife(GetLife() - value);
+        _life -= value;
+       // IncreaseLife(GetLife() - value);
         _uIManager.UpdateLifes(GetLife(), GetMaxLife());
     }
         private void Shoot()
@@ -96,12 +113,12 @@ using UnityEngine;
                     Pool.Add(Instantiate(_ShootPrefab, transform.position + new Vector3(0, 0.9f, 0), Quaternion.identity));
 
                 }
-            else
-            {
+                 else
+                {
                 freeBullet = false;
-            }
+                }
 
-            _canFire = Time.time + _fireRate;
+            _canFire = Time.time + 1/_fireRate;
             }
         }
         void OnTriggerEnter2D(Collider2D col)

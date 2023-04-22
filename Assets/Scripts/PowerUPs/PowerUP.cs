@@ -6,7 +6,8 @@ public class PowerUP : MonoBehaviour
 {
     [SerializeField]
     private float _powerUPSpeed = 5f;
-    private Player _player;
+    [HideInInspector]
+    public Player _player;
 
     // Start is called before the first frame update
     void Start()
@@ -18,13 +19,5 @@ public class PowerUP : MonoBehaviour
     void Update()
     {
         transform.Translate((Vector3.down * _powerUPSpeed) * Time.deltaTime);
-    }
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("Player"))
-        {
-            _player.SetMaxLife(110);
-            Destroy(gameObject);     
-        }
     }
 }
