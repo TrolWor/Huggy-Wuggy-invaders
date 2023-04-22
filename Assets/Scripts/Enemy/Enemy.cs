@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
         }
         if (col.CompareTag("PlayerBullet"))
         {
-            _enemyHealth = _enemyHealth- col.GetComponent<Bullet>().Damage ;
+            _enemyHealth -= col.GetComponent<Bullet>().Damage ;
 
             if (_enemyHealth <= 0)
             {

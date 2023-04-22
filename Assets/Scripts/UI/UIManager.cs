@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
         var value = CurrentLifes / MaxLifes;
         LifesImageDisplay.fillAmount = value;
         LifeText.text = "Жизни: " + CurrentLifes + "/" + MaxLifes;
+        ScoreText.text = "Очки: " + Score;
     }
     public void UpdateScore(int CurrentScore)
     {
