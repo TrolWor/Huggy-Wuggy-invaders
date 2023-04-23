@@ -55,8 +55,14 @@ using UnityEngine;
 
         public void IncreaseLife(float value)
         {
-            _life += value;
-        _uIManager.UpdateLifes(_life,_maxLife);
+        _life += value;
+        if (_life >_maxLife)
+        {
+            _life = _maxLife;
+        }
+        _uIManager.UpdateLifes(_life, _maxLife);
+
+
         }
 
         // Start is called before the first frame update
@@ -125,10 +131,17 @@ using UnityEngine;
         {
             if (col.gameObject.CompareTag("EnemyBullet")|| col.gameObject.CompareTag("Enemy"))
             {
-            Damage(10f);
-                //Destroy(col.gameObject);
-
-            }
+            Damage(col.GetComponent<Enemy>().EnemyHealth);
         }
+        if (_life <= 0)
+        {
+            GameOver();
+        }
+    }
+    void GameOver()
+    {
+        Destroy(gameObject);
+        GameOn = false;
+    }
     }
 

@@ -17,6 +17,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private GameObject _Enemy_Explosion;
     private UIManager _uIManager;
+
+    public float EnemyHealth { get => _enemyHealth; }
+
     // Start is called before the first frame update
     void Start()
     {
