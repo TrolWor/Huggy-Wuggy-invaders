@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
     private readonly float _speed = 10f;
     [SerializeField]
     private int _damage;
+    [SerializeField]
+    private bool _playerBullet;
     public float TimeToDisable;
 
     public int Damage { get => _damage; set => _damage = value; }
@@ -28,7 +30,14 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.position = transform.position + transform.up * _speed * Time.deltaTime;
-        transform.Translate(Time.deltaTime * _speed * transform.up);
+        if (_playerBullet)
+        {
+            transform.Translate(Time.deltaTime * _speed * transform.up);
+        }
+        else
+        {
+            transform.Translate(Time.deltaTime * _speed * -transform.up);
+        }
+
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ using UnityEngine;
         private float _maxLife;
         [SerializeField]
         private float _life;
-        public List<GameObject> Pool;
+        public List<GameObject> _poolBullet;
         private bool GameOn = true;
         [SerializeField]
         private float _speed = 5.0f;
@@ -42,18 +41,18 @@ using UnityEngine;
             return _maxLife;
         }
 
-        public void IncreaseMaxLife(float value)
+    public void IncreaseMaxLife(float value)
         {
             _maxLife += value;
         _uIManager.UpdateLifes(_life, _maxLife);
         }
 
-        public float GetLife()
+    public float GetLife()
         {
             return _life;
         }
 
-        public void IncreaseLife(float value)
+    public void IncreaseLife(float value)
         {
         _life += value;
         if (_life >_maxLife)
@@ -97,7 +96,6 @@ using UnityEngine;
     public void Damage(float value)
     {
         _life -= value;
-       // IncreaseLife(GetLife() - value);
         _uIManager.UpdateLifes(GetLife(), GetMaxLife());
     }
         private void Shoot()
@@ -105,18 +103,18 @@ using UnityEngine;
             if (Time.time > _canFire)
             {
                 _audioSource.Play();
-                for (int i = 0; i < Pool.Count; i++)
+                for (int i = 0; i < _poolBullet.Count; i++)
                 {
-                    if (!Pool[i].activeInHierarchy)
+                    if (!_poolBullet[i].activeInHierarchy)
                     {
-                        Pool[i].transform.position = transform.position;
-                        Pool[i].SetActive(true);
+                        _poolBullet[i].transform.position = transform.position;
+                        _poolBullet[i].SetActive(true);
                         freeBullet = true;
                     }
                 
                 }
                 if (!freeBullet) {
-                    Pool.Add(Instantiate(_ShootPrefab, transform.position + new Vector3(0, 0.9f, 0), Quaternion.identity));
+                    _poolBullet.Add(Instantiate(_ShootPrefab, transform.position + new Vector3(0, 0.9f, 0), Quaternion.identity));
 
                 }
                  else

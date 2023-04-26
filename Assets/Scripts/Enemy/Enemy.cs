@@ -6,13 +6,23 @@ public class Enemy : MonoBehaviour
 {
 
     [SerializeField]
-    private float _EnemySpeed = 5f;
+    private float _enemySpeed = 5f;
 
     [SerializeField]
     private float _enemyHealth = 5f;
 
     [SerializeField]
     private int _scoreEnemy = 1;
+
+    [SerializeField]
+    private bool _isShoot;
+    public List<GameObject> _poolBullet;
+    [SerializeField]
+    private float _fireRate = 0.25f;
+    private float _canFire = 0.0f;
+    private bool freeBullet = false;
+    [SerializeField]
+    private GameObject _ShootPrefab;
 
     [SerializeField]
     private GameObject _Enemy_Explosion;
@@ -29,12 +39,16 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate((Vector3.down * _EnemySpeed) * Time.deltaTime);
+        transform.Translate((Vector3.down * _enemySpeed) * Time.deltaTime);
 
         if (transform.position.y < -9.2f)
         {
             float RandomX = Random.Range(-7.6f, 7.6f);
             transform.position = new Vector3(RandomX, 6.35f, 0);
+        }
+        if (_isShoot)
+        {
+            Shoot();
         }
     }
 
@@ -57,4 +71,31 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+    private void Shoot()
+    {
+        if (Time.time > _canFire)
+        {
+            for (int i = 0; i < _poolBullet.Count; i++)
+            {
+                if (!_poolBullet[i].activeInHierarchy)
+                {
+                    _poolBullet[i].transform.position = transform.position;
+                    _poolBullet[i].SetActive(true);
+                    freeBullet = true;
+                }
+
+            }
+            if (!freeBullet)
+            {
+                _poolBullet.Add(Instantiate(_ShootPrefab, transform.position + new Vector3(0, 0.9f, 0), Quaternion.identity));
+
+            }
+            else
+            {
+                freeBullet = false;
+            }
+
+            _canFire = Time.time + 1 / _fireRate;
+        }
     }
+}
