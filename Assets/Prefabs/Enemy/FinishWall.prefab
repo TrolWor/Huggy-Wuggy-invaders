@@ -245,7 +245,7 @@ MonoBehaviour:
   _enemySpeed: 5
   _enemyHealth: 1
   _scoreEnemy: 10
-  _isShoot: 1
+  _isShoot: 0
   _poolBullet: []
   _fireRate: 0.25
   _ShootPrefab: {fileID: 5190442860754350666, guid: e0749c7050dab4f4fb7b3779d2a738b9, type: 3}

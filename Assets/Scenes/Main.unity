@@ -652,8 +652,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 026e33f8b5fd4ae4d8e6116f6d9f1113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxLife: 100
-  _life: 100
+  _maxLife: 10
+  _life: 10
   _poolBullet: []
   _win: 0
   _speed: 5
@@ -2385,7 +2385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3984202265639003708, guid: 92133e221ab40b941a080031750fa977, type: 3}
       propertyPath: m_TagString
-      value: Win
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92133e221ab40b941a080031750fa977, type: 3}
