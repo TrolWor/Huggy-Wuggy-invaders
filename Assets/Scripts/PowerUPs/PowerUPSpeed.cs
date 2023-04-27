@@ -13,7 +13,7 @@ public class PowerUPSpeed : PowerUP
     {
         if (col.CompareTag("Player"))
         {
-            _player.IncreaseFireRate(_inscrableSpeed);
+            _player.IncreaseSpeed(_inscrableSpeed);
             Destroy(gameObject);
         }
     }
