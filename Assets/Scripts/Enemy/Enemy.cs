@@ -41,11 +41,7 @@ public class Enemy : MonoBehaviour
     {
         transform.Translate((Vector3.down * _enemySpeed) * Time.deltaTime);
 
-        if (transform.position.y < -9.2f)
-        {
-            float RandomX = Random.Range(-7.6f, 7.6f);
-            transform.position = new Vector3(RandomX, 6.35f, 0);
-        }
+        
         if (_isShoot)
         {
             Shoot();

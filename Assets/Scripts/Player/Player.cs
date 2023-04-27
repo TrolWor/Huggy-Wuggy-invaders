@@ -10,6 +10,8 @@ using UnityEngine;
         private float _life;
         public List<GameObject> _poolBullet;
         private bool GameOn = true;
+    [SerializeField]
+        private bool _win =false;
         [SerializeField]
         private float _speed = 5.0f;
         [SerializeField]
@@ -83,12 +85,12 @@ using UnityEngine;
         }
         private void Movement()
         {
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) & (transform.position.x > -13f))
             {
                 transform.Translate((Vector3.left * _speed) * Time.deltaTime);
             }
 
-            if (Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow))
+            if ((Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow)) & (transform.position.x < 13f))
             {
                 transform.Translate((Vector3.right * _speed) * Time.deltaTime);
             }
@@ -127,9 +129,17 @@ using UnityEngine;
         }
         void OnTriggerEnter2D(Collider2D col)
         {
-            if (col.gameObject.CompareTag("EnemyBullet")|| col.gameObject.CompareTag("Enemy"))
+            if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("Win"))
             {
             Damage(col.GetComponent<Enemy>().EnemyHealth);
+            }
+            if (col.gameObject.CompareTag("EnemyBullet"))
+              {
+            Damage(col.GetComponent<Bullet>().Damage);
+              }
+        if (col.gameObject.CompareTag("Win"))
+        {
+            _win = true;
         }
         if (_life <= 0)
         {
@@ -138,8 +148,20 @@ using UnityEngine;
     }
     void GameOver()
     {
-        Destroy(gameObject);
-        GameOn = false;
+        if (!_win)
+        {
+            Destroy(gameObject);
+            GameOn = false;
+        }
+        else
+        {
+            Win();
+            GameOn = false;
+        }
+    }
+    void Win()
+    {
+        Debug.Log("Win");
     }
     }
 

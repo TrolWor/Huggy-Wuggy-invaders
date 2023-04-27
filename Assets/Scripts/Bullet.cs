@@ -13,11 +13,6 @@ public class Bullet : MonoBehaviour
 
     public int Damage { get => _damage; set => _damage = value; }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
     void OnEnable()
     {
         StartCoroutine(SetDisabled(TimeToDisable));
