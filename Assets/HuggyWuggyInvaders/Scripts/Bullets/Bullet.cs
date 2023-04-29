@@ -13,16 +13,6 @@ public class Bullet : MonoBehaviour
 
     public int Damage { get => _damage; set => _damage = value; }
 
-   // void OnEnable()
-   // {
-       // StartCoroutine(SetDisabled(TimeToDisable));
-    //}
-    //IEnumerator SetDisabled(float TimeToDisable)
-    //{
-       // yield return new WaitForSeconds(TimeToDisable);
-        
-   // }
-    // Update is called once per frame
     void Update()
     {
        if( transform.position.y > 20f || transform.position.y < -20f)
@@ -39,4 +29,5 @@ public class Bullet : MonoBehaviour
         }
 
     }
+
 }

@@ -10,7 +10,7 @@ using UnityEngine;
         private float _life;
         public List<GameObject> _poolBullet;
         private bool GameOn = true;
-    [SerializeField]
+        [SerializeField]
         private bool _win =false;
         [SerializeField]
         private float _speed = 5.0f;

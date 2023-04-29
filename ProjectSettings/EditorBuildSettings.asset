@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/HuggyWuggyInvaders/Scenes/MainMenu.unity
     guid: 635b73bf34b297c4fa30bc9c4277dc2f
   - enabled: 1
-    path: Assets/Scenes/Main.unity
+    path: Assets/HuggyWuggyInvaders/Scenes/Main.unity
     guid: ba9e06bf119898e4f81e29caaa65a57e
   m_configObjects: {}

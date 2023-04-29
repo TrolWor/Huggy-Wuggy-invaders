@@ -7,13 +7,10 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     private float _enemySpeed = 5f;
-
     [SerializeField]
     private float _enemyHealth = 5f;
-
     [SerializeField]
     private int _scoreEnemy = 1;
-
     [SerializeField]
     private bool _isShoot;
     public List<GameObject> _poolBullet;
@@ -23,7 +20,6 @@ public class Enemy : MonoBehaviour
     private bool freeBullet = false;
     [SerializeField]
     private GameObject _ShootPrefab;
-
     [SerializeField]
     private GameObject _Enemy_Explosion;
     private UIManager _uIManager;
@@ -58,6 +54,7 @@ public class Enemy : MonoBehaviour
         }
         if (col.CompareTag("PlayerBullet"))
         {
+            col.gameObject.SetActive(false);
             _enemyHealth -= col.GetComponent<Bullet>().Damage ;
 
             if (_enemyHealth <= 0)
